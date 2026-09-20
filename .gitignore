@@ -1,0 +1,21 @@
+.cursor/
+.DS_Store
+.idea/
+.vscode/
+*.log
+.env
+.env.*
+!*.env.example
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+node_modules/
+dist/
+build/
+*.egg-info/
+
+# Child repos are independent remotes; keep them local checkouts only
+mystilink-*/
