@@ -4,7 +4,7 @@
 
 ## Overview
 
-Index of Mystilink calculation libraries, schema contracts, and Agent Skill packages. Each project is an independent repository under this root. Install and run locally with the commands in each project README.
+Index of Mystilink calculation libraries, schema contracts, local MCP integration, and Agent Skill packages. Each project is an independent repository under this root. Install and run locally with the commands in each project README.
 
 ## Calculators
 
@@ -29,6 +29,20 @@ Optional `--envelope` wraps chart JSON as `mystilink.envelope/0.1`.
 | `mystilink-metaphysics-schema` | Shared JSON Schema for birth profiles, calendar basis, envelopes, and system charts |
 
 Schema repos are documentation/contract packages. They do **not** apply the calculator language matrix (stated in the project README).
+
+## Local MCP
+
+| Directory | CLI | Capabilities |
+|-----------|-----|--------------|
+| `mystilink-mcp` | `mystilink-mcp` | stdio MCP tools over calculator CLIs; optional loopback FastAPI on `127.0.0.1` |
+
+MCP / local integration package. Does **not** apply the calculator language matrix. Does **not** provide a remote HTTP/HTTPS service.
+
+```bash
+cd mystilink-mcp && python3 -m pip install -e .
+mystilink-mcp status
+mystilink-mcp stdio
+```
 
 ## Agent Skills
 
@@ -80,6 +94,7 @@ python3 /path/to/.cursor/skills/mystilink-bazi/scripts/bazi_calculate.py --date 
 - Calculator CLIs: short names `bazi` / `ziwei` / `horoscope` / `lunar` / `tarot` / `liuyao` (long `mystilink-*` aliases kept)
 - Optional `--envelope` on calculator CLIs for `mystilink.envelope/0.1`
 - Schema contracts: JSON Schema + examples; language matrix not applicable
+- `mystilink-mcp`: local stdio MCP (+ optional `127.0.0.1` FastAPI); language matrix not applicable
 - Skills: Agent Skill layout; language matrix not applicable (stated in each skill README)
 - No remote resource URLs required inside calculator trees for core compute
 - Cursor rules live under each repo `.cursor/rules/` and this index repo (local only; not published)

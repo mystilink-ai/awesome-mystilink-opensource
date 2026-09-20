@@ -4,7 +4,7 @@
 
 ## 概述
 
-Mystilink 计算类库、数据结构契约与 Agent Skill 包索引。每个项目均为本根目录下的独立仓库。安装与运行方式见各项目 README。
+Mystilink 计算类库、数据结构契约、本地 MCP 集成与 Agent Skill 包索引。每个项目均为本根目录下的独立仓库。安装与运行方式见各项目 README。
 
 ## 计算器
 
@@ -19,7 +19,8 @@ Mystilink 计算类库、数据结构契约与 Agent Skill 包索引。每个项
 
 计算器仓库遵循语言矩阵：C、C++、C#、Java、JavaScript（Node + Browser 注入）、Python。
 
-主 CLI 为短命令（`bazi`、`ziwei`、`horoscope`、`lunar`）。长别名（`mystilink-*`）仍会安装以保持兼容。
+主 CLI 为短命令（`bazi`、`ziwei`、`horoscope`、`lunar`、`tarot`、`liuyao`）。长别名（`mystilink-*`）仍会安装以保持兼容。
+可选 `--envelope` 将盘面包装为 `mystilink.envelope/0.1`。
 
 ## 数据结构契约
 
@@ -28,6 +29,20 @@ Mystilink 计算类库、数据结构契约与 Agent Skill 包索引。每个项
 | `mystilink-metaphysics-schema` | 出生档案、历法基座、信封与体系盘面的共用 JSON Schema |
 
 契约仓为文档/schema 包，**不适用**计算器语言矩阵（见项目 README）。
+
+## 本地 MCP
+
+| 目录 | CLI | 能力 |
+|------|-----|------|
+| `mystilink-mcp` | `mystilink-mcp` | 基于计算器 CLI 的 stdio MCP tools；可选本机 `127.0.0.1` FastAPI |
+
+MCP / 本地集成包。**不适用**计算器语言矩阵。**不提供**对外 http/https 远程服务。
+
+```bash
+cd mystilink-mcp && python3 -m pip install -e .
+mystilink-mcp status
+mystilink-mcp stdio
+```
 
 ## Agent Skills
 
@@ -76,8 +91,10 @@ python3 /path/to/.cursor/skills/mystilink-bazi/scripts/bazi_calculate.py --date 
 - MIT License
 - 多语言 README，文首语言互链
 - 计算器：语言矩阵 C / C++ / C# / Java / JavaScript（Node + Browser）/ Python
-- 计算器 CLI：短命令 `bazi` / `ziwei` / `horoscope` / `lunar`（长别名 `mystilink-*` 保留）
+- 计算器 CLI：短命令 `bazi` / `ziwei` / `horoscope` / `lunar` / `tarot` / `liuyao`（长别名 `mystilink-*` 保留）
+- 可选 `--envelope`（`mystilink.envelope/0.1`）
 - 数据结构契约：JSON Schema + 示例；不适用语言矩阵
+- `mystilink-mcp`：本地 stdio MCP（+ 可选 `127.0.0.1` FastAPI）；不适用语言矩阵
 - Skills：Agent Skill 布局；不适用语言矩阵（各 skill README 已声明）
 - 计算器核心计算不依赖仓库内远程资源 URL
 - Cursor Rules 位于各仓库与本索引仓库的 `.cursor/rules/`（仅本地，不发布）
